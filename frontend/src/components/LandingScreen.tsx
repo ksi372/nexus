@@ -20,7 +20,8 @@ export function LandingScreen({ onJoinSession }: LandingScreenProps) {
   const handleCreateSession = async () => {
     setIsCreating(true)
     try {
-      const response = await fetch('http://localhost:8000/sessions', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+      const response = await fetch(`${apiUrl}/sessions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ tpm_k: 8, tpm_n: 16, tpm_l: 6 })
